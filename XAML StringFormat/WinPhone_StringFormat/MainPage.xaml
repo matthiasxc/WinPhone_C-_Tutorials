@@ -1,0 +1,294 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="WinPhone_StringFormat.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="WINDOWS PHONE STRING FORMATS" SelectedIndex="{Binding PivotIndex, Mode=TwoWay}">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="string" Margin="12,12,12,0">
+            	<Grid>
+            		<Grid.RowDefinitions>
+            			<RowDefinition Height="Auto"/>
+            			<RowDefinition/>
+            		</Grid.RowDefinitions>
+            		<StackPanel Orientation="Vertical">
+                        <TextBlock TextWrapping="Wrap" Text="StringSample" FontSize="21.333" FontFamily="Segoe WP" Foreground="{StaticResource PhoneInverseBackgroundBrush}" Margin="12,0,0,0" TextOptions.TextHintingMode="Animated"/>
+
+                        <TextBox TextWrapping="Wrap" Text="{Binding StringSample, Mode=TwoWay}" 
+                                 TextOptions.TextHintingMode="Animated" 
+                                 TextChanged="UpdateBinding"/>
+            		</StackPanel>
+            		<ScrollViewer Grid.Row="1" Margin="0,12,0,0">
+            			<StackPanel Margin="12,0,0,0">
+            				<TextBlock TextWrapping="Wrap" Text="Text=&quot;{Binding StringSample, StringFormat=[...]}&quot;" FontSize="26.667" FontFamily="Segoe WP Semibold" Foreground="{StaticResource PhoneInverseBackgroundBrush}" TextOptions.TextHintingMode="Animated" Width="444" Margin="0,0,0,12"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat='I just typed &amp;quot;\{0\}&amp;quot;'" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+							<!-- Text="{Binding StringSample, StringFormat={0,20}}" -->
+            				
+                            <TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+									Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+									Text="{Binding StringSample, StringFormat=I just typed \&quot;\{0\}\&quot;}"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat='\{0,30\}'" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="{Binding StringSample, StringFormat=\{0\,30\}}" FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat='\{0,-30\}'" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="{Binding StringSample, StringFormat=\{0\,-30\}}" FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12"/>
+            			</StackPanel>
+            		</ScrollViewer>
+            	</Grid>
+                <!--Double line list with text wrapping-->
+            </controls:PivotItem>
+ 
+            <!--Pivot item two-->
+            <controls:PivotItem Header="number" Margin="12,12,12,0">
+            	<Grid>
+            		<Grid.RowDefinitions>
+            			<RowDefinition Height="Auto"/>
+            			<RowDefinition/>
+            		</Grid.RowDefinitions>
+            		<StackPanel Orientation="Vertical">
+            			<TextBlock TextWrapping="Wrap" Text="NumberSample" FontSize="21.333" FontFamily="Segoe WP" Foreground="{StaticResource PhoneInverseBackgroundBrush}" Margin="12,0,0,0" TextOptions.TextHintingMode="Animated"/>
+
+            			<TextBox TextWrapping="Wrap" Text="{Binding NumberProxy, Mode=TwoWay}" 
+            				TextOptions.TextHintingMode="Animated" 
+            				TextChanged="UpdateBinding" InputScope="Number"/>
+            		</StackPanel>
+            		<ScrollViewer Grid.Row="1" Margin="0,12,0,0">
+            			<StackPanel Margin="12,0,0,0">
+            				<TextBlock TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP Semibold" Foreground="{StaticResource PhoneInverseBackgroundBrush}" TextOptions.TextHintingMode="Animated" Width="444" Margin="0,0,0,11">
+            					<Run Text="Text=&quot;{Binding NumberSample, StringFormat=[...]}"/>
+            					<Run Text="&quot;"/>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:C\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+<!-- Text="{Binding StringSample, StringFormat={0,20}}" -->
+            				
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding NumberSample, StringFormat=\{0:C\}}"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:F\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="{Binding NumberSample, StringFormat=\{0:F\}}" FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:N\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="{Binding NumberSample, StringFormat=\{0:N\}}" FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:E\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="{Binding NumberSample, StringFormat=\{0:E\}}" FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12"/>
+
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:P\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding NumberSample, StringFormat=\{0:P\}}"/>
+
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:E5\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding NumberSample, StringFormat=\{0:E5\}}"/>
+
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:F4\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding NumberSample, StringFormat=\{0:F4\}}"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:P0\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding NumberSample, StringFormat=\{0:P0\}}"/>
+								<TextBlock TextWrapping="Wrap" Text="StringFormat='Amount available: \{0:C0\}'" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding NumberSample, StringFormat='Amount available: \{0:C0\}'}"/>
+            			</StackPanel>
+            		</ScrollViewer>
+            	</Grid> 
+                <!--Triple line list no text wrapping-->
+            </controls:PivotItem>
+            <controls:PivotItem Header="date" Margin="12,12,12,0">
+            	<Grid>
+            		<Grid.RowDefinitions>
+            			<RowDefinition Height="Auto"/>
+            			<RowDefinition/>
+            		</Grid.RowDefinitions>
+            		<StackPanel Orientation="Vertical">
+            			<TextBlock TextWrapping="Wrap" Text="DateSample (DateTime.Now)" FontSize="21.333" FontFamily="Segoe WP" Foreground="{StaticResource PhoneInverseBackgroundBrush}" Margin="12,0,0,0" TextOptions.TextHintingMode="Animated"/>
+            			<TextBlock TextWrapping="Wrap" 
+									FontSize="42.667" 
+									FontFamily="Segoe WP SemiLight" 
+									Foreground="{StaticResource PhoneInverseBackgroundBrush}" 
+									Margin="12,0,0,0" 
+									TextOptions.TextHintingMode="Animated"
+									Text="{Binding DateSample}">
+            			</TextBlock>
+            		</StackPanel>
+            		<ScrollViewer Grid.Row="1" Margin="0,12,0,0">
+            			<StackPanel Margin="12,0,0,0">
+            				<TextBlock TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP Semibold" Foreground="{StaticResource PhoneInverseBackgroundBrush}" TextOptions.TextHintingMode="Animated" Margin="0,0,0,12">
+            					<Run Text="Text=&quot;{Binding DateSample, StringFormat=[...]}"/>
+            					<Run Text="&quot;"/>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:d\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+							<!-- Text="{Binding StringSample, StringFormat={0,20}}" -->
+            				
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="26.667" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat=\{0:d\}}"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:D\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="{Binding DateSample, StringFormat=\{0:D\}}" FontFamily="Segoe WP SemiLight" FontSize="26.667" TextOptions.TextHintingMode="Animated" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:f\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="{Binding DateSample, StringFormat=\{0:f\}}" FontFamily="Segoe WP SemiLight" FontSize="26.667" TextOptions.TextHintingMode="Animated" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:F\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap" Text="{Binding DateSample, StringFormat=\{0:F\}}" FontFamily="Segoe WP SemiLight" FontSize="26.667" TextOptions.TextHintingMode="Animated" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12"/>
+
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:g\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat=\{0:g\}}"/>
+
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:G\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat=\{0:G\}}"/>
+
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:M\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat=\{0:M\}}"/>
+            				<TextBlock TextWrapping="Wrap" Text="StringFormat=\{0:R\}" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat=\{0:R\}}"/>
+
+								<TextBlock TextWrapping="Wrap" Text="StringFormat='hh:mm:ss:fff tt'" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat='hh:mm:ss:fff tt'}"/>
+
+							<TextBlock TextWrapping="Wrap" Text="StringFormat='MM/dd/yy'" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat='MM/dd/yy'}"/>
+
+							<TextBlock TextWrapping="Wrap" Text="StringFormat='MMMM dd, yyyy g'" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat='MMMM dd, yyyy g'}"/>
+
+							<TextBlock TextWrapping="Wrap" Text="StringFormat='ddd, MMM dd, yyyy'" FontFamily="Segoe WP Semibold" FontSize="24" TextOptions.TextHintingMode="Animated">
+            					<TextBlock.Foreground>
+            						<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+            					</TextBlock.Foreground>
+            				</TextBlock>
+            				<TextBlock TextWrapping="Wrap"  FontFamily="Segoe WP SemiLight" FontSize="29.333" TextOptions.TextHintingMode="Animated" 
+            					Foreground="{StaticResource PhoneForegroundBrush}" Margin="0,0,0,12" 
+            					Text="{Binding DateSample, StringFormat='ddd, MMM dd, yyyy'}"/>
+
+            			</StackPanel>
+            		</ScrollViewer>
+            	</Grid> 
+                <!--Triple line list no text wrapping-->
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+ 
+</phone:PhoneApplicationPage>
